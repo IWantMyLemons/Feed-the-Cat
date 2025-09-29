@@ -4,7 +4,7 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_yftv1"]
 texture = ExtResource("1_ivsif")
-texture_region_size = Vector2i(8, 8)
+texture_region_size = Vector2i(4, 4)
 0:0/0 = 0
 0:0/0/terrain_set = 0
 0:0/0/terrain = 0
@@ -403,7 +403,7 @@ texture_region_size = Vector2i(8, 8)
 12:0/0/terrains_peering_bit/top_side = 0
 
 [resource]
-tile_size = Vector2i(8, 8)
+tile_size = Vector2i(4, 4)
 physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Basic"
