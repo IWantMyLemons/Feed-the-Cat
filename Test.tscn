@@ -1,8 +1,27 @@
-[gd_scene load_steps=2 format=3 uid="uid://50s5k1gt4gym"]
+[gd_scene load_steps=4 format=4 uid="uid://50s5k1gt4gym"]
 
 [ext_resource type="TileSet" uid="uid://b7t2qkd835dkv" path="res://LevelTileSet.tres" id="1_myinc"]
+[ext_resource type="Texture2D" uid="uid://b3lrxpe1jievy" path="res://icon.svg" id="2_njov2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2au82"]
+size = Vector2(8, 8)
 
 [node name="Node2D" type="Node2D"]
 
 [node name="Level" type="TileMapLayer" parent="."]
+tile_map_data = PackedByteArray("AAACAPr/AAAAAAEAAAACAPv/AAAEAAEAAAADAPv/AAAFAAAAAAADAPz/AAAGAAAAAAAEAPz/AAADAAEAAAAEAP3/AAAHAAMAAAAFAP3/AAAFAAAAAAAFAP7/AAAGAAAAAAAGAP7/AAADAAEAAAAGAP//AAAHAAMAAAAHAP//AAADAAAAAAAFAP//AAAGAAEAAAAEAP//AAACAAAAAAADAP//AAAHAAMAAAADAP7/AAADAAIAAAADAP3/AAAJAAMAAAACAP3/AAABAAEAAAACAP//AAABAAMAAAACAP7/AAABAAIAAAA=")
 tile_set = ExtResource("1_myinc")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]
+position = Vector2(26, -79)
+
+[node name="Icon" type="Sprite2D" parent="RigidBody2D"]
+scale = Vector2(0.063, 0.063)
+texture = ExtResource("2_njov2")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="RigidBody2D"]
+shape = SubResource("RectangleShape2D_2au82")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(81, -49)
+zoom = Vector2(4, 4)
