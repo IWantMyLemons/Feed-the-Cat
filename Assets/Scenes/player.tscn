@@ -1,7 +1,95 @@
-[gd_scene load_steps=4 format=3 uid="uid://c4ogvt57h2cib"]
+[gd_scene load_steps=11 format=3 uid="uid://c4ogvt57h2cib"]
 
 [ext_resource type="Texture2D" uid="uid://3yp2otu2rnqm" path="res://Assets/Sprites/player.png" id="1_6cd4h"]
 [ext_resource type="Script" uid="uid://1wyk685lq2rn" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
+[ext_resource type="Script" uid="uid://dkoi0bmxxgv3d" path="res://Assets/Scripts/player_animator.gd" id="2_38rej"]
+
+[sub_resource type="Animation" id="Animation_w3t24"]
+resource_name = "Fall"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 48, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_7dd06"]
+resource_name = "Idle"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.25, 0.5, 0.75, 1, 1.25, 1.5, 2),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(16, 0, 16, 16), Rect2(32, 0, 16, 16), Rect2(48, 0, 16, 16), Rect2(64, 0, 16, 16), Rect2(80, 0, 16, 16), Rect2(96, 0, 16, 16), Rect2(96, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_23lac"]
+resource_name = "Jump"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(96, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_t1xgp"]
+resource_name = "Move"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/0/interp = 0
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.0150464, 0.25, 0.5, 0.75, 0.993062),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Rect2(96, 0, 16, 16), Rect2(16, 16, 16, 16), Rect2(32, 16, 16, 16), Rect2(48, 16, 16, 16), Rect2(96, 0, 16, 16)]
+}
+
+[sub_resource type="Animation" id="Animation_38rej"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("PlayerAnimator/Sprite2D:region_rect")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Rect2(0, 0, 16, 16)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_38rej"]
+_data = {
+&"Fall": SubResource("Animation_w3t24"),
+&"Idle": SubResource("Animation_7dd06"),
+&"Jump": SubResource("Animation_23lac"),
+&"Move": SubResource("Animation_t1xgp"),
+&"RESET": SubResource("Animation_38rej")
+}
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7dd06"]
 radius = 5.0
@@ -15,16 +103,25 @@ SPEED = 50.0
 offset = Vector2(0, -15)
 zoom = Vector2(4.5, 4.5)
 
-[node name="AgentAnimator" type="Node2D" parent="."]
+[node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
+script = ExtResource("2_38rej")
+player_controller = NodePath("..")
+animation_player = NodePath("AnimationPlayer")
+sprite = NodePath("Sprite2D")
 
-[node name="Sprite2D" type="Sprite2D" parent="AgentAnimator"]
+[node name="AnimationPlayer" type="AnimationPlayer" parent="PlayerAnimator"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_38rej")
+}
+autoplay = "Idle"
+speed_scale = 1.5
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerAnimator"]
 position = Vector2(0, -8)
 texture = ExtResource("1_6cd4h")
 region_enabled = true
 region_rect = Rect2(0, 0, 16, 16)
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="AgentAnimator"]
-root_node = NodePath("../..")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
