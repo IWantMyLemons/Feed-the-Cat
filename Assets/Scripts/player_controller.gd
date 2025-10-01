@@ -3,12 +3,13 @@ extends CharacterBody2D
 class_name PlayerController
 
 @export var SPEED = 20.0
+@export var spam_scene: PackedScene
 
 var direction = 0
 
 var speed_multiplier = 30.0
 
-
+var has_spam = true
 
 #const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
@@ -17,7 +18,14 @@ func _input(event):
 	# Handle jump.
 	if event.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		#Handle Jump Down
+	# Handle spam jump
+	elif event.is_action_pressed("Jump") and has_spam and not is_on_floor():
+		var spam = spam_scene.instantiate()
+		spam.position = position + Vector2(0, 5.0)
+		get_parent().add_child(spam)
+		has_spam = false
+		velocity.y = JUMP_VELOCITY
+	#Handle Jump Down
 	if event.is_action_pressed("Move Down"):
 		set_collision_mask_value(10,false)
 	else:
