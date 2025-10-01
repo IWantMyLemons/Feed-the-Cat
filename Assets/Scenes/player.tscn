@@ -96,12 +96,15 @@ radius = 5.0
 height = 14.0
 
 [node name="Player" type="CharacterBody2D"]
+collision_mask = 768
 script = ExtResource("1_7dd06")
 SPEED = 50.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -15)
 zoom = Vector2(4.5, 4.5)
+position_smoothing_enabled = true
+rotation_smoothing_enabled = true
 
 [node name="PlayerAnimator" type="Node2D" parent="." node_paths=PackedStringArray("player_controller", "animation_player", "sprite")]
 script = ExtResource("2_38rej")
