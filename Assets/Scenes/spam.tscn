@@ -1,25 +1,18 @@
 [gd_scene load_steps=3 format=3 uid="uid://dsr74m3sdweqs"]
 
-[ext_resource type="Texture2D" uid="uid://b3lrxpe1jievy" path="res://icon.svg" id="1_vhfmx"]
+[ext_resource type="Texture2D" uid="uid://cqnvpvhmuq1h5" path="res://Assets/Sprites/spammeat.png" id="1_vhfmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oip7v"]
-size = Vector2(14, 6)
+size = Vector2(13, 10)
 
 [node name="Spam" type="RigidBody2D"]
 collision_layer = 0
-collision_mask = 256
-
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.109375, 0.046875)
-texture = ExtResource("1_vhfmx")
+collision_mask = 768
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, 0)
 shape = SubResource("RectangleShape2D_oip7v")
 
-[node name="Label" type="Label" parent="."]
-offset_left = -7.0
-offset_top = -3.0
-offset_right = 37.0
-offset_bottom = 20.0
-scale = Vector2(0.316335, 0.269685)
-text = "SPAM"
+[node name="Sprite2D" type="Sprite2D" parent="."]
+rotation = 1.5708
+texture = ExtResource("1_vhfmx")

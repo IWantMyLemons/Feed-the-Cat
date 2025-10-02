@@ -1,9 +1,10 @@
-[gd_scene load_steps=10 format=4 uid="uid://cpcsa0i70i6ry"]
+[gd_scene load_steps=11 format=4 uid="uid://cpcsa0i70i6ry"]
 
 [ext_resource type="Texture2D" uid="uid://dr4xfli38lt4u" path="res://Assets/Sprites/tiles_1.png" id="1_v8cfb"]
 [ext_resource type="PackedScene" uid="uid://c4ogvt57h2cib" path="res://Assets/Scenes/player.tscn" id="2_3qumw"]
 [ext_resource type="PackedScene" uid="uid://i1fhdyjsl7d" path="res://moving_platform.tscn" id="3_3uh8n"]
 [ext_resource type="PackedScene" uid="uid://ccrvwjnfwrx8a" path="res://Assets/Scenes/Area/area_exit.tscn" id="4_ok36w"]
+[ext_resource type="PackedScene" uid="uid://jjx24tavx8y" path="res://Assets/Scenes/pickablespam.tscn" id="5_cmv0b"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_3qumw"]
 texture = ExtResource("1_v8cfb")
@@ -377,3 +378,6 @@ curve = SubResource("Curve2D_ok36w")
 [node name="MovingPlatform3" parent="Node2D" instance=ExtResource("3_3uh8n")]
 position = Vector2(-49, 4)
 curve = SubResource("Curve2D_cmv0b")
+
+[node name="pickablespam" parent="." instance=ExtResource("5_cmv0b")]
+position = Vector2(23, -9)
