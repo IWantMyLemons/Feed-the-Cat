@@ -6,7 +6,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_w7kkl"]
 radius = 11.0
 
-[node name="AreaExit" type="Area2D"]
+[node name="AreaExit" type="Area2D" groups=["Area_Exits"]]
 collision_layer = 65536
 script = ExtResource("1_41xq1")
 
