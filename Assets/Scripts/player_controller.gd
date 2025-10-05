@@ -10,6 +10,7 @@ signal lose_spam
 @export var bonus_jumps = 0
 
 @onready var footstep_player = $FootstepPlayer 
+@onready var jump_player = $JumpPlayer
 
 var direction = 0
 
@@ -30,6 +31,7 @@ func _input(event):
 	# Handle jump.
 	if event.is_action_pressed("Jump") and can_jump():
 		velocity.y = JUMP_VELOCITY
+		jump_player.play()
 	# Handle spam jump
 	elif event.is_action_pressed("Jump") and bonus_jumps > 0 and not can_jump():
 		var spam: Spam = spam_scene.instantiate()
@@ -38,6 +40,7 @@ func _input(event):
 		bonus_jumps -= 1
 		lose_spam.emit(spam)
 		velocity.y = JUMP_VELOCITY
+		jump_player.play()
 	#Handle Jump Down
 	if event.is_action_pressed("Move Down"):
 		set_collision_mask_value(10, false)
