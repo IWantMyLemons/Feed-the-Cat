@@ -9,6 +9,7 @@ var direction = 0
 var speed_multiplier = 30.0
 
 @export var jumps = 0
+@export var spam_scene: PackedScene
 
 #const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
@@ -19,6 +20,9 @@ func _input(event):
 		velocity.y = JUMP_VELOCITY
 	# Handle spam jump
 	elif event.is_action_pressed("Jump") and jumps > 0 and not is_on_floor():
+		var spam: Spam = spam_scene.instantiate()
+		spam.position = self.position + Vector2(0, 5)
+		get_parent().add_child(spam)
 		jumps -= 1
 		velocity.y = JUMP_VELOCITY
 	#Handle Jump Down
@@ -41,3 +45,9 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+func _on_area_pickup_entered(body: Node2D) -> void:
+	if body.has_method("pickup"):
+		body.pickup(self)
+	else:
+		push_warning("Tried to pickup object without pickup() method")

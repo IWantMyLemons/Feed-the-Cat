@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4ogvt57h2cib"]
+[gd_scene load_steps=13 format=3 uid="uid://c4ogvt57h2cib"]
 
 [ext_resource type="Texture2D" uid="uid://3yp2otu2rnqm" path="res://Assets/Sprites/player.png" id="1_6cd4h"]
 [ext_resource type="Script" uid="uid://1wyk685lq2rn" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
 [ext_resource type="Script" uid="uid://dkoi0bmxxgv3d" path="res://Assets/Scripts/player_animator.gd" id="2_38rej"]
+[ext_resource type="PackedScene" uid="uid://dsr74m3sdweqs" path="res://Assets/Scenes/spam.tscn" id="2_t1xgp"]
 
 [sub_resource type="Animation" id="Animation_w3t24"]
 resource_name = "Fall"
@@ -102,6 +103,7 @@ radius = 6.08276
 collision_mask = 768
 script = ExtResource("1_7dd06")
 SPEED = 50.0
+spam_scene = ExtResource("2_t1xgp")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 offset = Vector2(0, -15)
@@ -142,4 +144,4 @@ position = Vector2(0, -7)
 shape = SubResource("CircleShape2D_t1xgp")
 debug_color = Color(0.816102, 0.36156, 0.493964, 0.42)
 
-[connection signal="body_entered" from="Area2D" to="." method="_on_pickup_enter"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_pickup_entered"]
