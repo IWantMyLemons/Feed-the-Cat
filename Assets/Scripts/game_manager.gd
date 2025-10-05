@@ -2,22 +2,28 @@ extends Node
 
 var current_area = 1
 var area_path = "res://Assets/Scenes/Area/"
+var hud : HUD
+var curr_spam = 0
+var max_spam = 1;
 
-var spam = 0
+func _ready():
+	hud = get_tree().get_first_node_in_group("HUD") as HUD
 
 func _on_ready() -> void:
 	$Player.collect_spam.connect(add_spam)
 	$Player.lose_spam.connect(sub_spam)
 
 func add_spam(_spam: Spam):
-	spam += 1
-	if spam == 1 :
+	curr_spam += 1
+	hud.update_spam(curr_spam,max_spam)
+	if curr_spam == max_spam :
 		var portal = get_tree().get_first_node_in_group("Area_Exits") as AreaExit
 		portal.open()
 
 func sub_spam(_spam: Spam):
-	spam -= 1
-	if spam != 1 :
+	curr_spam -= 1
+	hud.update_spam(curr_spam,max_spam)
+	if curr_spam != max_spam :
 		var portal = get_tree().get_first_node_in_group("Area_Exits") as AreaExit
 		portal.close()
 
@@ -33,4 +39,4 @@ func setup_area():
 	reset_count()
 	
 func reset_count():
-	spam = 0
+	curr_spam = 0
