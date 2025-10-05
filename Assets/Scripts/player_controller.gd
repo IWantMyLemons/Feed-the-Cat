@@ -73,5 +73,6 @@ func _on_pickup_entered(body: Node2D) -> void:
 
 
 func _on_hurt_box_entered(_body: Node2D) -> void:
+	player_death.emit()
 	get_tree().call_deferred("reload_current_scene")
 	
