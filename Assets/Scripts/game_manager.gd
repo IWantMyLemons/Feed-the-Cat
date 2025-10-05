@@ -5,13 +5,15 @@ var area_path = "res://Assets/Scenes/Area/"
 var hud : HUD
 var curr_spam = 0
 var max_spam = 1;
+var player: PlayerController
 
 func _ready():
 	hud = get_tree().get_first_node_in_group("HUD") as HUD
 
 func _on_ready() -> void:
-	$Player.collect_spam.connect(add_spam)
-	$Player.lose_spam.connect(sub_spam)
+	player = $Player
+	player.collect_spam.connect(add_spam)
+	player.lose_spam.connect(sub_spam)
 
 func add_spam(_spam: Spam):
 	curr_spam += 1
@@ -28,6 +30,9 @@ func sub_spam(_spam: Spam):
 		portal.close()
 
 func next_level():
+	if current_area == 5:
+		get_tree().get_first_node_in_group("Player").is_win = true
+		return
 	current_area += 1
 	var full_path = area_path + "area_" + str(current_area) + ".tscn"
 	# get_tree().change_scene_to_file("res://Assets/Scenes/Area/area_2.tscn")

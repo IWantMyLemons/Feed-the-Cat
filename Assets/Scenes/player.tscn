@@ -75,7 +75,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id="Animation_c3tg1"]
 resource_name = "Win"
-length = 2.0
+length = 1000.0
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -110,7 +110,7 @@ radius = 8.0
 radius = 7.0
 height = 22.0
 
-[node name="Player" type="CharacterBody2D"]
+[node name="Player" type="CharacterBody2D" groups=["Player"]]
 collision_mask = 768
 script = ExtResource("1_7dd06")
 spam_scene = ExtResource("2_t1xgp")

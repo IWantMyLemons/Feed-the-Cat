@@ -11,6 +11,8 @@ signal lose_spam
 
 @onready var footstep_player = $FootstepPlayer 
 
+var is_win = false
+
 var direction = 0
 
 var speed_multiplier = 50
@@ -27,6 +29,9 @@ func can_jump():
 	return is_on_floor() or !coyote_timer.is_stopped()
 
 func _input(event):
+	if is_win:
+		SPEED = 0
+		return
 	# Handle jump.
 	if event.is_action_pressed("Jump") and can_jump():
 		velocity.y = JUMP_VELOCITY
