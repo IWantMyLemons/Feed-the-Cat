@@ -1,6 +1,7 @@
 extends CharacterBody2D
-
 class_name PlayerController
+
+signal player_death
 
 @export var SPEED = 20.0
 @export var spam_scene: PackedScene
