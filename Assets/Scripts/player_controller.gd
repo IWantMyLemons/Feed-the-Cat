@@ -9,6 +9,8 @@ signal lose_spam
 @export var spam_scene: PackedScene
 @export var bonus_jumps = 0
 
+@onready var footstep_player = $FootstepPlayer 
+
 var direction = 0
 
 var speed_multiplier = 50
@@ -19,6 +21,7 @@ const JUMP_VELOCITY = -300.0
 # Coyote time
 @onready var coyote_timer = $CoyoteTimer
 var was_on_floor = false
+var is_walking = false  
 
 func can_jump():
 	return is_on_floor() or !coyote_timer.is_stopped()
@@ -53,6 +56,16 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
+	
+	if is_on_floor() and abs(velocity.x) > 10:
+		if not is_walking:
+			is_walking = true
+			if not footstep_player.playing:
+				footstep_player.play()
+	else:
+		if is_walking:
+			is_walking = false
+			footstep_player.stop()
 	
 	# Update coyote timer
 	if is_on_floor():

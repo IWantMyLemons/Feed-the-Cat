@@ -1,9 +1,10 @@
-[gd_scene load_steps=15 format=3 uid="uid://c4ogvt57h2cib"]
+[gd_scene load_steps=16 format=3 uid="uid://c4ogvt57h2cib"]
 
 [ext_resource type="Script" uid="uid://1wyk685lq2rn" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
 [ext_resource type="Script" uid="uid://dkoi0bmxxgv3d" path="res://Assets/Scripts/player_animator.gd" id="2_38rej"]
 [ext_resource type="PackedScene" uid="uid://dsr74m3sdweqs" path="res://Assets/Scenes/spam.tscn" id="2_t1xgp"]
 [ext_resource type="Texture2D" uid="uid://dyxei8bxt7ast" path="res://Assets/Sprites/player-spam.png" id="4_t1xgp"]
+[ext_resource type="AudioStream" uid="uid://cm8o3exyebqcn" path="res://Assets/Sprites/qweqweqwe.mp3" id="5_23lac"]
 
 [sub_resource type="Animation" id="Animation_w3t24"]
 resource_name = "Fall"
@@ -165,6 +166,9 @@ debug_color = Color(0.805168, 0.398387, 0.331632, 0.42)
 [node name="CoyoteTimer" type="Timer" parent="."]
 wait_time = 0.07
 one_shot = true
+
+[node name="FootstepPlayer" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_23lac")
 
 [connection signal="body_entered" from="SpamBox" to="." method="_on_pickup_entered"]
 [connection signal="body_entered" from="HurtBox" to="." method="_on_hurt_box_entered"]
