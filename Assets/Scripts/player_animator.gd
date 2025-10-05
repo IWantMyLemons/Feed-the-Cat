@@ -11,7 +11,9 @@ func _process(_delta):
 	elif player_controller.direction == -1:
 		sprite.flip_h = true
 		#Animasi gerak dan idle
-	if abs(player_controller.velocity.x) > 0.0:
+	if get_parent().is_win:
+		animation_player.play("Win")
+	elif abs(player_controller.velocity.x) > 0.0:
 		animation_player.play("Move")
 	else:
 		animation_player.play("Idle")

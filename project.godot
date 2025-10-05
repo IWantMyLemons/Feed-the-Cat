@@ -23,6 +23,7 @@ GameManager="*res://Assets/Scripts/game_manager.gd"
 
 Area_Exits=""
 HUD=""
+Player=""
 
 [input]
 
