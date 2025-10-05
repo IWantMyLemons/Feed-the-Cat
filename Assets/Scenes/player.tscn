@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c4ogvt57h2cib"]
+[gd_scene load_steps=13 format=3 uid="uid://c4ogvt57h2cib"]
 
 [ext_resource type="Texture2D" uid="uid://3yp2otu2rnqm" path="res://Assets/Sprites/player.png" id="1_6cd4h"]
 [ext_resource type="Script" uid="uid://1wyk685lq2rn" path="res://Assets/Scripts/player_controller.gd" id="1_7dd06"]
@@ -96,6 +96,9 @@ _data = {
 radius = 5.0
 height = 14.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_t1xgp"]
+radius = 6.08276
+
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 768
 script = ExtResource("1_7dd06")
@@ -131,3 +134,14 @@ region_rect = Rect2(0, 0, 16, 16)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, -7)
 shape = SubResource("CapsuleShape2D_7dd06")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="Spambox" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -7)
+shape = SubResource("CircleShape2D_t1xgp")
+debug_color = Color(0.816102, 0.36156, 0.493964, 0.42)
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_pickup_enter"]

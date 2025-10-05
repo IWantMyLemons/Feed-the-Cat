@@ -1,13 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://dsr74m3sdweqs"]
+[gd_scene load_steps=4 format=3 uid="uid://dsr74m3sdweqs"]
 
+[ext_resource type="Script" uid="uid://ched0o6tm12qr" path="res://Assets/Scenes/spam.gd" id="1_oip7v"]
 [ext_resource type="Texture2D" uid="uid://cqnvpvhmuq1h5" path="res://Assets/Sprites/spammeat.png" id="1_vhfmx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_oip7v"]
 size = Vector2(13, 10)
 
 [node name="Spam" type="RigidBody2D"]
-collision_layer = 0
+collision_layer = 2
 collision_mask = 768
+script = ExtResource("1_oip7v")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1.5, 0)

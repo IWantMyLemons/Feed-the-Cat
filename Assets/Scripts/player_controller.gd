@@ -9,8 +9,6 @@ var direction = 0
 
 var speed_multiplier = 30.0
 
-var can_jump = true
-
 @export var spam_ammount=0
 
 #const SPEED = 100.0
@@ -20,14 +18,12 @@ func _input(event):
 	# Handle jump.
 	if event.is_action_pressed("Jump") and is_on_floor():
 		velocity.y = JUMP_VELOCITY
-		can_jump=true
 	# Handle spam jump
-	elif event.is_action_pressed("Jump") and can_jump and spam_ammount>0 and not is_on_floor():
+	elif event.is_action_pressed("Jump") and spam_ammount > 0 and not is_on_floor():
 		var spam = spam_scene.instantiate()
 		spam.position = position + Vector2(0, 5.0)
 		get_parent().add_child(spam)
-		can_jump = false
-		spam_ammount=spam_ammount-1
+		spam_ammount = spam_ammount - 1
 		velocity.y = JUMP_VELOCITY
 	#Handle Jump Down
 	if event.is_action_pressed("Move Down"):
@@ -49,3 +45,11 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 
 	move_and_slide()
+
+
+func _on_pickup_enter(body: Node2D) -> void:
+	if body is Spam:
+		body.queue_free()
+		spam_ammount += 1
+	else:
+		push_warning("Found pickup %s without a branch" % [body.name])
