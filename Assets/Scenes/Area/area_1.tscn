@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=4 uid="uid://cpcsa0i70i6ry"]
+[gd_scene load_steps=8 format=4 uid="uid://cpcsa0i70i6ry"]
 
 [ext_resource type="Script" uid="uid://hhav34qsro5e" path="res://Assets/Scripts/game_manager.gd" id="1_apv3p"]
 [ext_resource type="PackedScene" uid="uid://dcisutwldjqo5" path="res://Assets/Scenes/HUD.tscn" id="1_qmntv"]
@@ -6,6 +6,7 @@
 [ext_resource type="TileSet" uid="uid://b7t2qkd835dkv" path="res://LevelTileSet.tres" id="2_cmv0b"]
 [ext_resource type="PackedScene" uid="uid://ccrvwjnfwrx8a" path="res://Assets/Scenes/Area/area_exit.tscn" id="4_ok36w"]
 [ext_resource type="PackedScene" uid="uid://dsr74m3sdweqs" path="res://Assets/Scenes/spam.tscn" id="6_qmntv"]
+[ext_resource type="Texture2D" uid="uid://b45ip1l0xbhh8" path="res://Assets/Sprites/qwe.png" id="7_apv3p"]
 
 [node name="Area_1" type="Node2D"]
 script = ExtResource("1_apv3p")
@@ -26,5 +27,11 @@ position = Vector2(284, -17)
 
 [node name="Spam" parent="." instance=ExtResource("6_qmntv")]
 position = Vector2(284, -59)
+
+[node name="Qwe" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(188, 23)
+scale = Vector2(2.51302, 2.51302)
+texture = ExtResource("7_apv3p")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

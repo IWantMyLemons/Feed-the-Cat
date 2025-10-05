@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://sy8f1du4aqdc"]
+[gd_scene load_steps=11 format=4 uid="uid://sy8f1du4aqdc"]
 
 [ext_resource type="Script" uid="uid://hhav34qsro5e" path="res://Assets/Scripts/game_manager.gd" id="1_bpbm0"]
 [ext_resource type="PackedScene" uid="uid://c4ogvt57h2cib" path="res://Assets/Scenes/player.tscn" id="1_tom73"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dsr74m3sdweqs" path="res://Assets/Scenes/spam.tscn" id="3_7fvdw"]
 [ext_resource type="PackedScene" uid="uid://ccrvwjnfwrx8a" path="res://Assets/Scenes/Area/area_exit.tscn" id="4_mokdh"]
 [ext_resource type="PackedScene" uid="uid://i1fhdyjsl7d" path="res://moving_platform.tscn" id="5_mokdh"]
+[ext_resource type="Texture2D" uid="uid://b45ip1l0xbhh8" path="res://Assets/Sprites/qwe.png" id="8_qlp4l"]
 
 [sub_resource type="Curve2D" id="Curve2D_bpbm0"]
 resource_local_to_scene = true
@@ -49,5 +50,11 @@ path_time = 4.0
 
 [node name="MovingPlatform2" parent="." instance=ExtResource("5_mokdh")]
 curve = SubResource("Curve2D_mokdh")
+
+[node name="Qwe" type="Sprite2D" parent="."]
+z_index = -4096
+position = Vector2(222, -29)
+scale = Vector2(2.51302, 2.51302)
+texture = ExtResource("8_qlp4l")
 
 [connection signal="ready" from="." to="." method="_on_ready"]
