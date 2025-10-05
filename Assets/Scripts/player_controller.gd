@@ -63,10 +63,15 @@ func _physics_process(delta: float) -> void:
 	
 	move_and_slide()
 
-func _on_area_pickup_entered(body: Node2D) -> void:
+func _on_pickup_entered(body: Node2D) -> void:
 	if body.has_method("pickup"):
 		if body is Spam:
 			collect_spam.emit(body)
 		body.pickup(self)
 	else:
 		push_warning("Tried to pickup object without pickup() method")
+
+
+func _on_hurt_box_entered(_body: Node2D) -> void:
+	get_tree().call_deferred("reload_current_scene")
+	
