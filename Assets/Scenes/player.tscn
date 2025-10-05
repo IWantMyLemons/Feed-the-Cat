@@ -100,7 +100,7 @@ height = 14.0
 radius = 6.08276
 
 [node name="Player" type="CharacterBody2D"]
-collision_mask = 768
+collision_mask = 1792
 script = ExtResource("1_7dd06")
 spam_scene = ExtResource("2_t1xgp")
 
