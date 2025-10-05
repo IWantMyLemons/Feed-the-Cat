@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=4 uid="uid://c02ug1kn5etdm"]
+[gd_scene load_steps=9 format=4 uid="uid://c02ug1kn5etdm"]
 
 [ext_resource type="TileSet" uid="uid://b7t2qkd835dkv" path="res://LevelTileSet.tres" id="1_hqpvi"]
+[ext_resource type="PackedScene" uid="uid://dcisutwldjqo5" path="res://Assets/Scenes/HUD.tscn" id="2_pklmc"]
 [ext_resource type="PackedScene" uid="uid://c4ogvt57h2cib" path="res://Assets/Scenes/player.tscn" id="2_t6f8i"]
 [ext_resource type="Script" uid="uid://hhav34qsro5e" path="res://Assets/Scripts/game_manager.gd" id="2_vnjnx"]
 [ext_resource type="PackedScene" uid="uid://dsr74m3sdweqs" path="res://Assets/Scenes/spam.tscn" id="3_t6f8i"]
@@ -16,6 +17,11 @@ point_count = 3
 
 [node name="Area5" type="Node2D"]
 script = ExtResource("2_vnjnx")
+
+[node name="Hud_place" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="Hud_place" instance=ExtResource("2_pklmc")]
+metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("2_t6f8i")]
 position = Vector2(0, -4)
