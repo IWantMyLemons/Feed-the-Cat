@@ -26,6 +26,7 @@ script = ExtResource("1_kb6bq")
 metadata/_edit_use_anchors_ = true
 
 [node name="Player" parent="." instance=ExtResource("1_mhq0n")]
+position = Vector2(0, -9)
 
 [node name="AreaExit" parent="." instance=ExtResource("3_td5lp")]
 position = Vector2(409, -14)
