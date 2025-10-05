@@ -1,5 +1,6 @@
-[gd_scene load_steps=11 format=4 uid="uid://cpcsa0i70i6ry"]
+[gd_scene load_steps=12 format=4 uid="uid://cpcsa0i70i6ry"]
 
+[ext_resource type="PackedScene" uid="uid://dcisutwldjqo5" path="res://Assets/Scenes/HUD.tscn" id="1_qmntv"]
 [ext_resource type="Texture2D" uid="uid://dr4xfli38lt4u" path="res://Assets/Sprites/tiles_1.png" id="1_v8cfb"]
 [ext_resource type="PackedScene" uid="uid://c4ogvt57h2cib" path="res://Assets/Scenes/player.tscn" id="2_3qumw"]
 [ext_resource type="PackedScene" uid="uid://i1fhdyjsl7d" path="res://moving_platform.tscn" id="3_3uh8n"]
@@ -349,6 +350,10 @@ _data = {
 point_count = 2
 
 [node name="Area_1" type="Node2D"]
+
+[node name="Hud_place" type="CanvasLayer" parent="."]
+
+[node name="Hud" parent="Hud_place" instance=ExtResource("1_qmntv")]
 
 [node name="One_way_ground" type="TileMapLayer" parent="."]
 use_parent_material = true
