@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://sy8f1du4aqdc"]
+[gd_scene load_steps=12 format=4 uid="uid://sy8f1du4aqdc"]
 
 [ext_resource type="Script" uid="uid://hhav34qsro5e" path="res://Assets/Scripts/game_manager.gd" id="1_bpbm0"]
 [ext_resource type="PackedScene" uid="uid://c4ogvt57h2cib" path="res://Assets/Scenes/player.tscn" id="1_tom73"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://ccrvwjnfwrx8a" path="res://Assets/Scenes/Area/area_exit.tscn" id="4_mokdh"]
 [ext_resource type="PackedScene" uid="uid://i1fhdyjsl7d" path="res://moving_platform.tscn" id="5_mokdh"]
 [ext_resource type="Texture2D" uid="uid://b45ip1l0xbhh8" path="res://Assets/Sprites/qwe.png" id="8_qlp4l"]
+[ext_resource type="Texture2D" uid="uid://dn3jr1nl5f783" path="res://Assets/Sprites/car_pic-removebg-preview.png" id="9_847m5"]
 
 [sub_resource type="Curve2D" id="Curve2D_bpbm0"]
 resource_local_to_scene = true
@@ -56,5 +57,11 @@ z_index = -4096
 position = Vector2(222, -29)
 scale = Vector2(2.51302, 2.51302)
 texture = ExtResource("8_qlp4l")
+
+[node name="CarPic-removebg-preview" type="Sprite2D" parent="."]
+z_index = -4093
+position = Vector2(489, -88)
+scale = Vector2(-1, -1)
+texture = ExtResource("9_847m5")
 
 [connection signal="ready" from="." to="." method="_on_ready"]

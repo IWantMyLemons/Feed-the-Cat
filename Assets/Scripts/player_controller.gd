@@ -5,7 +5,7 @@ signal player_death
 signal collect_spam
 signal lose_spam
 
-@export var SPEED = 65
+@export var SPEED = 85
 @export var spam_scene: PackedScene
 @export var bonus_jumps = 0
 
