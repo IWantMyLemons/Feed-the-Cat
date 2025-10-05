@@ -2,6 +2,8 @@ extends CharacterBody2D
 class_name PlayerController
 
 signal player_death
+signal collect_spam
+signal lose_spam
 
 @export var SPEED = 65
 @export var spam_scene: PackedScene
@@ -31,6 +33,7 @@ func _input(event):
 		spam.position = self.position + Vector2(0, 5)
 		get_parent().add_child(spam)
 		bonus_jumps -= 1
+		lose_spam.emit(spam)
 		velocity.y = JUMP_VELOCITY
 	#Handle Jump Down
 	if event.is_action_pressed("Move Down"):
@@ -62,6 +65,8 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_pickup_entered(body: Node2D) -> void:
 	if body.has_method("pickup"):
+		if body is Spam:
+			collect_spam.emit(body)
 		body.pickup(self)
 	else:
 		push_warning("Tried to pickup object without pickup() method")
