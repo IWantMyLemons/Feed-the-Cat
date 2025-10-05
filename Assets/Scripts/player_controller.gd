@@ -3,33 +3,39 @@ extends CharacterBody2D
 class_name PlayerController
 
 @export var SPEED = 20.0
+@export var spam_scene: PackedScene
+@export var bonus_jumps = 0
 
 var direction = 0
 
 var speed_multiplier = 30.0
 
-@export var jumps = 0
-@export var spam_scene: PackedScene
-
 #const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
 
+# Coyote time
+@onready var coyote_timer = $CoyoteTimer
+var was_on_floor = false
+
+func can_jump():
+	return is_on_floor() or !coyote_timer.is_stopped()
+
 func _input(event):
 	# Handle jump.
-	if event.is_action_pressed("Jump") and is_on_floor():
+	if event.is_action_pressed("Jump") and can_jump():
 		velocity.y = JUMP_VELOCITY
 	# Handle spam jump
-	elif event.is_action_pressed("Jump") and jumps > 0 and not is_on_floor():
+	elif event.is_action_pressed("Jump") and bonus_jumps > 0 and not can_jump():
 		var spam: Spam = spam_scene.instantiate()
 		spam.position = self.position + Vector2(0, 5)
 		get_parent().add_child(spam)
-		jumps -= 1
+		bonus_jumps -= 1
 		velocity.y = JUMP_VELOCITY
 	#Handle Jump Down
 	if event.is_action_pressed("Move Down"):
-		set_collision_mask_value(10,false)
+		set_collision_mask_value(10, false)
 	else:
-		set_collision_mask_value(10,true)
+		set_collision_mask_value(10, true)
 
 
 func _physics_process(delta: float) -> void:
@@ -43,7 +49,14 @@ func _physics_process(delta: float) -> void:
 		velocity.x = direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-
+	
+	# Update coyote timer
+	if is_on_floor():
+		was_on_floor = true
+	elif was_on_floor:
+		was_on_floor = false
+		coyote_timer.start()
+	
 	move_and_slide()
 
 func _on_area_pickup_entered(body: Node2D) -> void:
