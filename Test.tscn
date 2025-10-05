@@ -12,4 +12,3 @@ tile_set = ExtResource("1_myinc")
 [node name="Player" parent="." instance=ExtResource("2_njov2")]
 position = Vector2(382, 4)
 SPEED = 100.0
-spam_ammount = 1
