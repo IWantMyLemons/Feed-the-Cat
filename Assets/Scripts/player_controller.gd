@@ -3,13 +3,13 @@ class_name PlayerController
 
 signal player_death
 
-@export var SPEED = 20.0
+@export var SPEED = 65
 @export var spam_scene: PackedScene
 @export var bonus_jumps = 0
 
 var direction = 0
 
-var speed_multiplier = 30.0
+var speed_multiplier = 50
 
 #const SPEED = 100.0
 const JUMP_VELOCITY = -300.0
