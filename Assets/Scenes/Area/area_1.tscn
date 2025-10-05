@@ -335,6 +335,7 @@ script = ExtResource("1_apv3p")
 [node name="Hud_place" type="CanvasLayer" parent="."]
 
 [node name="Hud" parent="Hud_place" instance=ExtResource("1_qmntv")]
+metadata/_edit_use_anchors_ = true
 
 [node name="One_way_ground" type="TileMapLayer" parent="."]
 use_parent_material = true
