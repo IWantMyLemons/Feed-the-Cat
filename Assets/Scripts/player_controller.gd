@@ -72,5 +72,6 @@ func _on_pickup_entered(body: Node2D) -> void:
 		push_warning("Tried to pickup object without pickup() method")
 
 
-func _on_hurt_box_entered(body: Node2D) -> void:
-	get_tree().reload_current_scene()
+func _on_hurt_box_entered(_body: Node2D) -> void:
+	get_tree().call_deferred("reload_current_scene")
+	
